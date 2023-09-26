@@ -121,23 +121,27 @@ public class Main {
 
 
 
-    public static int VowelsCounter(String str){
+    public static int VowelsCounter(String[] names1){
 
-        return 0;
+        int vowelCount = 0;
 
+        for (String name : names1) {
+            String lowerCaseName = name.toLowerCase();
+            for (char ch : lowerCaseName.toCharArray()) {
+                if ("aeiou".indexOf(ch) != -1) {
+                    vowelCount++;
+                }
+            }
+        }
+
+        return vowelCount;
     }
 
-
     //Question 17
-
     //Swap the first element in an array with the last element in an array and return
 
-
-
     public static String[] swap(String[] stringArray) {
-
         return null;
-
     }
 
 
@@ -171,39 +175,41 @@ public class Main {
 
      */
 
-
-
     public static String replaceCharacters(String str) {
 
         return null;
 
     }
 
-
     //Question 19
 
            // " The small brown dog hopped the fence " becomes " The Wu Tang Wu Hopped Wu Fence "
 
-
-
     public static String replaceWuTangTwoThreeDivisible(String stringInput) {
-
         return null;
 
     }
 
-
     //Question 20
 
-    public static String createStringOfFibonnaciUpToMax(int maxnumber) {
-
-        return null;
-
+    public static String createStringOfFibonnaciUpToMax(int maxNumber) {
+        String builder = "";
+        int previousNum = 1;
+        int nextNum = 1;
+        //the sum of the next number is the addition of the previous two.
+        for (int i = 1; i <= maxNumber; i++) {
+            builder += previousNum + " ";
+            int sum = previousNum + nextNum;
+            previousNum = nextNum;
+            nextNum = sum;
+        }
+        return builder;
     }
 
     public static void main(String[] args) {
         String[] names = {"Devon", "Kobe", "MJ", "Lebron"};
         int[] intList = {8, 11, 24, 48};
+        String[] names1={"Victoria","James","Simon","Julius"};
 
         //Questions 1-5
         System.out.println(getLastIndex(names));
@@ -226,5 +232,13 @@ public class Main {
         System.out.println(printGivenStringTimesNumberGiven("Blanca", 4));
         System.out.println(repeatFirstThreeLetters("Devon",5));
         System.out.println(wordsInAStringCounter("How many words are in this string"));
+//
+        //Questions 16-20
+        System.out.println(VowelsCounter(names1));
+
+
+
+        System.out.println(createStringOfFibonnaciUpToMax(6));
+
     }
 }
