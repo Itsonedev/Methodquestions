@@ -1,7 +1,6 @@
 package questions;
 
 import java.util.Arrays;
-import java.util.OptionalDouble;
 
 public class Main {
     //Question 1
@@ -140,8 +139,10 @@ public class Main {
     //Question 17
     //Swap the first element in an array with the last element in an array and return
 
-    public static String[] swap(String[] stringArray) {
-        return null;
+    public static void swapFirstToLast(String[] stringArray) {
+        String temp = stringArray[0];
+        stringArray[0] = stringArray[stringArray.length - 1];
+        stringArray[stringArray.length - 1] = temp;
     }
 
 
@@ -176,18 +177,47 @@ public class Main {
      */
 
     public static String replaceCharacters(String str) {
+        String[] words = str.split("\\s+");
+        StringBuilder result = new StringBuilder();
 
-        return null;
+        for (String word : words){
+            StringBuilder modifiedWord = new StringBuilder();
 
+            for (int i = 0; i < word.length(); i++){
+                char currentChar = word.charAt(i);
+                char lowerCaseChar = Character.toLowerCase(currentChar);
+                if (lowerCaseChar == 'f'){
+                    modifiedWord.append('7');
+                } else if (lowerCaseChar == 's') {
+                    modifiedWord.append('$');
+                }else if (lowerCaseChar == '1'){
+                    modifiedWord.append('!');
+                }else if (lowerCaseChar == 'a'){
+                    modifiedWord.append('@');
+                }else{
+                    modifiedWord.append(currentChar);
+                }
+            }
+            result.append(modifiedWord).append(" ");
+        }
+        return result.toString().trim();
     }
 
     //Question 19
 
            // " The small brown dog hopped the fence " becomes " The Wu Tang Wu Hopped Wu Fence "
 
-    public static String replaceWuTangTwoThreeDivisible(String stringInput) {
-        return null;
+    public static String replaceWuTangTwoThreeDivisible(String input) {
 
+        String[] words = input.split("\\s+");
+        for (int i = 0; i < words.length; i++) {
+            if ((i + 1) % 2 == 0) {
+                words[i] = "Wu";
+            } else if ((i + 1) % 3 == 0) {
+                words[i] = "Tang";
+            }
+        }
+        return String.join(" ", words);
     }
 
     //Question 20
@@ -232,12 +262,13 @@ public class Main {
         System.out.println(printGivenStringTimesNumberGiven("Blanca", 4));
         System.out.println(repeatFirstThreeLetters("Devon",5));
         System.out.println(wordsInAStringCounter("How many words are in this string"));
-//
+
         //Questions 16-20
         System.out.println(VowelsCounter(names1));
-
-
-
+        System.out.println(replaceCharacters("The Farmer went to the store to get 1 dollar's worth of fertilizer"));
+        swapFirstToLast(names);
+        System.out.println(Arrays.toString(names));
+        System.out.println(replaceWuTangTwoThreeDivisible("The small brown dog hopped the fence"));
         System.out.println(createStringOfFibonnaciUpToMax(6));
 
     }
